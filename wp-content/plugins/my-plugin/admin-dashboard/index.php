@@ -26,10 +26,10 @@
             <div class="group-field">
                 <input type="checkbox" name="category" id="category">
                 <label for="category">Category</label><br>
-                <input type="hidden" name="catname" id="catname" placeholder ="Enter category name"><br>
+                <input type="text" name="catname" id="catname" placeholder ="Enter category name"  class="d-none"><br>
                 <input type="checkbox" name="tags" id="tags">
                 <label for="tags">Tags</label><br>
-                <input type="hidden" name="tags" id="tags" placeholder ="Enter tags name">
+                <input type="text" name="tagname" id="tagname" placeholder ="Enter tags name" class="d-none">
               </div>
           </div>
          
@@ -37,5 +37,8 @@
         <input type="button" value="Create post" class="btn bg-dark text-white">
       </form>
   </div>
+
+    <!-- script links cdn  -->
+    <script src="<?= plugins_url()?>/my-plugin/admin-dashboard/js/main.js"></script>
 </body>
 </html>
