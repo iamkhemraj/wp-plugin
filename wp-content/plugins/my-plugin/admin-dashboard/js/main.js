@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
     var property  = '#catname';
     toggleCatnameVisibility(isChecked , property);
   });
-
+  
   $('#tags').click(function(){
     var isChecked = $(this).prop('checked');
     var property  = '#tagname';
