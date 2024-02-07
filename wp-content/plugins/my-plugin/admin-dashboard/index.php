@@ -46,13 +46,9 @@
         $.ajax({
           type: 'POST',
           url: '<?= plugins_url()?>/my-plugin/libs/helper.php', 
-          data:  {formData: formData},
-          dataType: "json",
+          data: formData,
           success: function(response) {
             console.log(response)
-          },
-          error: function(xhr, status, error) {
-            console.error(response, error);
           }
         });
       });
