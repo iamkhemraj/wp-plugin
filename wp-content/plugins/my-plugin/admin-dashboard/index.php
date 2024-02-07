@@ -16,9 +16,9 @@
       <form id="form">
         <div class="row">
           <div class="col-md-6">
-            <div class="group-field">
-              <label for="post">Post Type</label>
+            <div class="group-field">            
               <input type="text " name = "post" placeholder="Enter post type" class="form-control">
+              <label for="post">Post Type</label>
                
             </div>  
           </div>
@@ -26,13 +26,15 @@
             <div class="group-field">
                 <input type="checkbox" name="category" id="category">
                 <label for="category">Category</label><br>
+                <input type="hidden" name="catname" id="catname" placeholder ="Enter category name"><br>
                 <input type="checkbox" name="tags" id="tags">
-                <label for="tags">Tags</label>
+                <label for="tags">Tags</label><br>
+                <input type="hidden" name="tags" id="tags" placeholder ="Enter tags name">
               </div>
           </div>
          
         </div><br>
-        <input type="button" value="Create post" class="btn bg-primary ">
+        <input type="button" value="Create post" class="btn bg-dark text-white">
       </form>
   </div>
 </body>
