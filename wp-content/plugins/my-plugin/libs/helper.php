@@ -35,4 +35,5 @@ class CustomPostTypeRegistration {
 new CustomPostTypeRegistration();
 
 
+
 ?>
