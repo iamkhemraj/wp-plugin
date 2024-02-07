@@ -11,34 +11,54 @@
   
   <div class="container p-4">
       <div class="post-title">
-        <h3>Create Post Type</h3>
+        <h3>Register Post Type</h3>
       </div>
       <form id="form">
         <div class="row">
           <div class="col-md-6">
             <div class="group-field">            
-              <input type="text " name = "post" placeholder="Enter post type" class="form-control">
+              <input type="text " name="post" placeholder="Enter post type" class="form-control">
               <label for="post">Post Type</label>
-               
             </div>  
           </div>
           <div class="col-md-6">
             <div class="group-field">
                 <input type="checkbox" name="category" id="category">
                 <label for="category">Category</label><br>
-                <input type="text" name="catname" id="catname" placeholder ="Enter category name"  class="d-none"><br>
+                <input type="text" name="catname" id="catname" placeholder="Enter category name" class="d-none"><br>
                 <input type="checkbox" name="tags" id="tags">
                 <label for="tags">Tags</label><br>
-                <input type="text" name="tagname" id="tagname" placeholder ="Enter tags name" class="d-none">
+                <input type="text" name="tagname" id="tagname" placeholder="Enter tags name" class="d-none">
               </div>
           </div>
-         
         </div><br>
-        <input type="button" value="Create post" class="btn bg-dark text-white">
+        <input type="submit" value="Create post" class="btn bg-dark text-white">
       </form>
   </div>
 
-    <!-- script links cdn  -->
-    <script src="<?= plugins_url()?>/my-plugin/admin-dashboard/js/main.js"></script>
+  <!-- script links cdn  -->
+  
+  <script>
+   jQuery(document).ready(function($){
+      $('#form').submit(function(e) {
+        e.preventDefault(); 
+        var formData = $(this).serialize(); 
+        $.ajax({
+          type: 'POST',
+          url: '<?= plugins_url()?>/my-plugin/libs/helper.php', 
+          data:  {formData: formData},
+          dataType: "json",
+          success: function(response) {
+            console.log(response)
+          },
+          error: function(xhr, status, error) {
+            console.error(response, error);
+          }
+        });
+      });
+      
+
+    });
+  </script>
 </body>
 </html>
