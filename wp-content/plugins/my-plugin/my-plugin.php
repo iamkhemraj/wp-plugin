@@ -53,9 +53,14 @@
     function form_data_list(){
        include('admin-dashboard/index.php');
     }
+   
+    include_once( plugin_dir_path( __FILE__ ) . '/functions.php' );
+    // Include the main plugin class.
+   // require_once plugin_dir_path(__FILE__) . '/libs/register-post.php';
 
-    
+ 
 
-    
+    // Define the class for our custom post type plugin.
+  
 
 ?>
