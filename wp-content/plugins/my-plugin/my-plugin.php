@@ -10,7 +10,8 @@
 
     // Register post type file
     require_once("libs/register-post.php");
-
+    require_once( __DIR__ . "/functions.php");
+    
     // Wp activation hook 
     register_activation_hook( __FILE__, 'wp_plugin_activation' );
     function wp_plugin_activation(){

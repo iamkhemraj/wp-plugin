@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 
-  // Toggle vissiable category and tags fields
-  function toggleCatnameVisibility(checked , property) {
+  // Toggle visibility of category and tags fields
+  function toggleFieldVisibility(checked, property) {
     if (checked) {
       $(property).removeClass("d-none");
     } else {
@@ -9,16 +9,16 @@ jQuery(document).ready(function($){
     }
   }
 
-  $('#category').click(function(){
+  $('#category_check').change(function(){
     var isChecked = $(this).prop('checked');
-    var property  = '#catname';
-    toggleCatnameVisibility(isChecked , property);
+    var property = '#category';
+    toggleFieldVisibility(isChecked, property);
   });
   
-  $('#tags').click(function(){
+  $('#tags_check').change(function(){
     var isChecked = $(this).prop('checked');
-    var property  = '#tagname';
-    toggleCatnameVisibility(isChecked , property);
+    var property = '#tags';
+    toggleFieldVisibility(isChecked, property);
   });
 
 });
