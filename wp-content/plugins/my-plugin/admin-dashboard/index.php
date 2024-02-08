@@ -38,23 +38,5 @@
 
   <!-- script links cdn  -->
   
-  <script>
-   jQuery(document).ready(function($){
-      $('#form').submit(function(e) {
-        e.preventDefault(); 
-        var formData = $(this).serialize(); 
-        $.ajax({
-          type: 'POST',
-          url: '<?= plugins_url()?>/my-plugin/libs/helper.php', 
-          data: formData,
-          success: function(response) {
-            console.log(response)
-          }
-        });
-      });
-      
-
-    });
-  </script>
 </body>
 </html>
