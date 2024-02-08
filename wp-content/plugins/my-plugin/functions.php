@@ -11,4 +11,11 @@
   }
 
   add_action( 'admin_init','your_namespace');
+
+
+  function return_err_msg($message){ // func to error message  
+    echo  $message ;
+
+  }
+
 ?>
