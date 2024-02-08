@@ -29,8 +29,10 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="text" name="post_type" id="post_type" class=" form-control  input-sm" size = "50px" placeholder="Enter post type"  maxlength="20"required>
                         <label for="post_type" class="form-label">Post Type:</label>
+                        <input type="text" name="post_type" id="post_type" class=" form-control  input-sm" size = "50px" placeholder="Enter post type"  maxlength="20" >
+                        <span class="error"> </span> 
+                        
                     </div>
                 </div>
                 <div class="col-md-6">
