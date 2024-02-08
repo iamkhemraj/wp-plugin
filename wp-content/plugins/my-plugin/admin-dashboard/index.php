@@ -16,6 +16,9 @@
         input[type='text'] {
             width: 50%;
         }
+        .error{
+            color:red;
+        }
     </style>
 </head>
 
