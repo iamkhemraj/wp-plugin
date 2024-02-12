@@ -48,7 +48,7 @@
                             <input type="text" name="post_type" id="post_type" class=" form-control  input-sm" size = "50px" placeholder="Enter post type"  maxlength="20" >
                             <span class="error"> 
                                 <?= !empty($_SESSION['error_message']) ? $_SESSION['error_message'] : '' ; ?>
-                                <?= !empty($_SESSION['cpt_esxits']) ? $_SESSION['cpt_esxits'] : '' ; ?>
+                                <?= !empty($_SESSION['cpt_exists']) ? $_SESSION['cpt_exists'] : '' ; ?>
                             </span> 
                             
                         </div>
