@@ -9,7 +9,7 @@
     <title>Custom post</title>
     <style>
         
-        .post-type-section {
+        .post-type-section , .get_post_type {
             border: 1px solid #c3c4c7;
             box-shadow: 0 1px 1px rgba(0,0,0,.04);
             padding: 20px 0px  20px 20px;
@@ -28,6 +28,12 @@
         #create-custom-post{
             color:#fff !important;
             background-color: #2271b1 !important;
+        }
+        .get_post_type {
+            border: 1px solid #c3c4c7;
+            box-shadow: 0 1px 1px rgba(0,0,0,.04);
+            padding: 20px 0px  20px 20px;
+            width: 80%;
         }
     </style>
 </head>
@@ -71,7 +77,26 @@
                     Post</button>
             </form>
         </div>
+
+        </div>
     </div>
+
+     <!-- Show all custom post type -->
+     <div class="get_post_type">
+            
+            <?php
+                if(isset( $_SESSION['get_post_type'])  && !empty($_SESSION['get_post_type'])){
+                    $cpt_lists = $_SESSION['get_post_type'];
+                    foreach ( $cpt_lists as  $list){
+                        $cpt_name = !empty($list->post_type) ? $list->post_type : ''; ?>
+                        <div class="post_type-list">
+                            <input type="checkbox" name="cpt-list" id="cpt-list">
+                            <?= $cpt_name ?>
+                        </div> <?php    
+                    }
+                    
+                }
+            ?>
 
 </body>
 
