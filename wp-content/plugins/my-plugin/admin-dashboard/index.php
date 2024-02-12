@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label for="post_type" class="form-label">Post Type:</label>
                         <input type="text" name="post_type" id="post_type" class=" form-control  input-sm" size = "50px" placeholder="Enter post type"  maxlength="20" >
-                        <span class="error"> </span> 
+                        <span class="error"> <?php if(  !empty($_SESSION['error_message'])){ echo  $_SESSION['error_message'];}?></span> 
                         
                     </div>
                 </div>
@@ -43,10 +43,12 @@
                         <input type="checkbox" id="category_check">
                         <label for="category_check" class="form-label">Category</label>
                         <input type="text" name="category" id="category" class=" form-control input-sm  input-sm d-none" placeholder="Enter category name" maxlength="20">
+                        <span class="error"> <?php if(  !empty($_SESSION['category_err'])){ echo  $_SESSION['category_err'];}?></span> 
                         <br>
                         <input type="checkbox" id="tags_check">
                         <label for="tags_check" class="form-label">Tags</label>
                         <input type="text" name="tags" id="tags" class=" form-control  input-sm d-none" placeholder="Enter tags name">
+                        <span class="error"> <?php if(  !empty($_SESSION['tag_err'])){ echo  $_SESSION['tag_err'];}?></span> 
                     </div>
                 </div>
             </div><br>
