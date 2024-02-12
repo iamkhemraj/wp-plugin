@@ -121,8 +121,9 @@
         function get_all_cpt(){
             global $wpdb, $table_prefix;
             $table_name = $table_prefix . 'cpt';
-            $get_cpt    = "SELECT * FROM $table_name WHERE id != 0";
-            $cpt_data   = $wpdb->get_results($get_cpt);
+            $result = $wpdb->get_results("SELECT post_type FROM $table_name WHERE id != 0" );
 
+                
+            print_r($result);
         }
     ?>
