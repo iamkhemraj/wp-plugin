@@ -12,7 +12,7 @@
             border: 1px solid #c3c4c7;
             box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
             padding: 20px 0px 20px 20px;
-            width: 100%;
+            width: 70%;
         }
 
         .post-title h1 {
@@ -103,18 +103,28 @@
                     <div class="post-title">
                         <h6>All Post Type</h6>
                     </div> <?php
+                   
                     if (isset($_SESSION['get_post_type']) && !empty($_SESSION['get_post_type'])) {
                         $cpt_lists = $_SESSION['get_post_type'];
+                    
                         foreach ($cpt_lists as $list) {
-                            $cpt_name = !empty($list->post_type) ? $list->post_type : ''; ?>
+                            $cpt_name = !empty($list->post_type) ? $list->post_type : '';
+                    
+                            // Check if the current post type is 'Book'
+                            if ($cpt_name === $cpt_name ) {
+                                $checked = 'checked';
+                            } else {
+                                $checked = ''; // Ensure checkbox is unchecked for other post types
+                            }
+                            ?>
                             <div class="post_type-list">
-                                <input type="checkbox" name="cpt-list" id="cpt-list">
+                                <input type="checkbox" name="cpt-list" id="cpt-list" <?= $checked ?>>
                                 <?= $cpt_name ?>
                             </div>
-                        <?php
+                            <?php
                         }
-
                     } ?>
+                    
                 </div>
             </div>
             
