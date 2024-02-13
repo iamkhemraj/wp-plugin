@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
 
   function toggleFieldVisibility(checked, property) { // Toggle visibility of cpt fields
     if (checked) {
@@ -8,39 +8,34 @@ jQuery(document).ready(function($){
     }
   }
 
-  $('#category_check').change(function(){
+  $('#category_check').change(function () {
     var isChecked = $(this).prop('checked');
-    var property = '#category';
-    toggleFieldVisibility(isChecked, property);
-  });
-  
-  $('#tags_check').change(function(){
-    var isChecked = $(this).prop('checked');
-    var property = '#tags';
+    var property  = '#category';
     toggleFieldVisibility(isChecked, property);
   });
 
-  // $("#form").validate({  // jQuery cpt form validation
-  //   rules: {
-  //       post_type: {
-  //           required: true,
-  //           minlength: 2,
-  //           maxlength:15
-  //       },
+  $('#tags_check').change(function () {
+    var isChecked = $(this).prop('checked');
+    var property  = '#tags';
+    toggleFieldVisibility(isChecked, property);
+  });
   
-  //   },
-  //   messages: {
-  //       post_type: {
-  //           required: "Please enter post type",
-  //           maxlength:"max length 15 digits",
-  //           minlength: "Your username must consist of at least 2 characters"
-  //       },
-      
-  //   }
-  // });
+  $('.cpt-list').change(function () {  // When the checkbox is clicked
+   
+    const cptArrame  =  $('.post_type-list').text();
+    const cptName    =  cptArrame.split(" ");
+    const result     =  myWords.filter(e =>  e);
+    const postName   =  $('.cpt-list').text();
+
+    if(result.indexOf(postName) !== -1)  
+    {  
+      alert( postName + "Yes, the value exists!"); 
+    }   
+    else  
+    {  
+      alert("No, the value is absent.");
+    }  
 
 });
-
-
 
 
