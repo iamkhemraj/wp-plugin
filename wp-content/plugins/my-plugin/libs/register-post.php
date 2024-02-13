@@ -22,4 +22,27 @@
         }
     }
 
+
+    
+    // Load WordPress environment
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
+
+    // Check if postName is sent via POST request
+    if (isset($_POST['postName'])) {
+        $postName = $_POST['postName'];
+
+        // Check if the post type exists
+        if (post_type_exists($postName)) {
+            // Unregister the post type
+            unregister_post_type($postName);
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+    } else {
+        echo 'error';
+    }
+
+
+
 ?>

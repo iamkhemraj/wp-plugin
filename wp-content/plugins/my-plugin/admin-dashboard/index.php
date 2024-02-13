@@ -122,4 +122,27 @@
 
 </body>
 
+<script>
+jQuery(document).ready(function($){
+
+    $('.cpt-list').change(function () {
+        const postName = $(this).val().trim(); // Get post type value
+        const path = '<?php echo plugin_dir_url(__dir__).'/libs/register-post.php' ?>'; // Get the path to your PHP script using PHP
+        console.log(path );
+        $.ajax({
+            url: path , // Concatenate the PHP-generated path with the PHP script name
+            type: 'POST',
+            data: {postName: postName},
+            success: function(response) {
+                if (response === 'success') {
+                    alert(postName + " has been unregistered successfully!");
+                } else {
+                    alert("Failed to unregister " + postName);
+                }
+            }
+        });
+    });
+});
+</script>
+
 </html>
