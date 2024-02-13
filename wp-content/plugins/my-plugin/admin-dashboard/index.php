@@ -96,22 +96,23 @@
                     </form>
                 </div>
             </div>
-        
+
             <div class="col-md-12">
                 <!-- Show all custom post type -->
                 <div class="get_post_type">
                     <div class="post-title">
                         <h6>All Post Type</h6>
-                    </div> <?php
-                   
+                    </div>
+                    <?php
+
                     if (isset($_SESSION['get_post_type']) && !empty($_SESSION['get_post_type'])) {
                         $cpt_lists = $_SESSION['get_post_type'];
-                    
+
                         foreach ($cpt_lists as $list) {
                             $cpt_name = !empty($list->post_type) ? $list->post_type : '';
-                    
+
                             // Check if the current post type is 'Book'
-                            if ($cpt_name === $cpt_name ) {
+                            if ($cpt_name === $cpt_name) {
                                 $checked = 'checked';
                             } else {
                                 $checked = ''; // Ensure checkbox is unchecked for other post types
@@ -124,13 +125,48 @@
                             <?php
                         }
                     } ?>
-                    
+
                 </div>
             </div>
-            
+
         </div>
     </div>
-   
+    <script>
+        jQuery(document).ready(function ($) {
+            // When the checkbox is clicked
+            $('#cpt-list').change(function () {
+                var postType = $(this).data('post-type');
+                alert(postType);
+
+                // If checkbox is unchecked
+                if (!$(this).is(':checked')) {
+                    // Display confirmation dialog
+                    var confirmDelete = confirm("Are you sure you want to remove post type '" + postType + "'?");
+                    if (confirmDelete) {
+                        // If confirmed, make AJAX call to unregister the post type
+                        var currentPageURL = window.location.href;
+                        $.ajax({
+                            url: currentPageURL, // Path to your PHP script to handle unregistration
+                            type: 'POST',
+                            data: { post_type: postType },
+                            success: function (response) {
+                                alert(response); // Show success message or handle response as needed
+                            },
+                            error: function (xhr, status, error) {
+                                console.error(error); // Log error to console
+                            }
+                        });
+                    } else {
+                        // If not confirmed, re-check the checkbox
+                        $(this).prop('checked', true);
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>
