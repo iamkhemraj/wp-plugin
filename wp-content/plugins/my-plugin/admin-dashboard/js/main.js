@@ -8,34 +8,33 @@ jQuery(document).ready(function ($) {
     }
   }
 
-  $('#category_check').change(function () {
+  $('#category_check').change(function () { // Query for cotegory check box
     var isChecked = $(this).prop('checked');
-    var property  = '#category';
+    var property = '#category';
     toggleFieldVisibility(isChecked, property);
   });
 
-  $('#tags_check').change(function () {
+  $('#tags_check').change(function () {  // Query for tags check box
     var isChecked = $(this).prop('checked');
-    var property  = '#tags';
+    var property = '#tags';
     toggleFieldVisibility(isChecked, property);
   });
-  
-  $('.cpt-list').change(function () {  // When the checkbox is clicked
-   
-    const cptArrame  =  $('.post_type-list').text();
-    const cptName    =  cptArrame.split(" ");
-    const result     =  myWords.filter(e =>  e);
-    const postName   =  $('.cpt-list').text();
 
-    if(result.indexOf(postName) !== -1)  
-    {  
-      alert( postName + "Yes, the value exists!"); 
-    }   
-    else  
-    {  
+  $('.cpt-list').change(function () {
+    const cptArray = $('.cpt-list:checked').map(function () {
+      return $(this).val().trim();
+    }).get();
+
+    const postName = $(this).val().trim();
+    console.log(postName);
+
+    if (cptArray.indexOf(postName)) {
+      alert(postName + " Yes, the value exists!");
+    } else {
       alert("No, the value is absent.");
-    }  
+    }
+  });
+
 
 });
-
 
