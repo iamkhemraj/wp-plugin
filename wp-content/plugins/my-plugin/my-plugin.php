@@ -40,7 +40,7 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
-                $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : '';
+                $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
                 $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
         
@@ -57,7 +57,7 @@
                         $result = $wpdb->get_results("SELECT * FROM $table_name WHERE `post_type` = '$post_type'");
                         if ($result) {
                             session_start();
-                            $cpt_exist_err = "$post_type post type already exists!";
+                            $cpt_exist_err = "$post_type post type is already exists!";
                         }
                     }
                 }
@@ -76,7 +76,7 @@
                     $tagErr = 'Please enter tag!';
                 } else {
                     if (!preg_match("/^[A-Za-z ]*$/", $tag)) {
-                        $tagErr = 'Only alphabetic characters are allowed!';
+                         $tagErr = 'Only alphabetic characters are allowed!';
                     }
                 }
         
