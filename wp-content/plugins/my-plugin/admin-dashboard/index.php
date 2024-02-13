@@ -104,22 +104,21 @@
                         <div class="get_post_type">
                             <div class="post-title">
                                 <h6>All Post Type</h6>
-                            </div>  <?php
-                            $cpt_lists = $_SESSION['get_post_type']; ?> 
-                            <div class="post_type-list"><?php
+                            </div>
+                            <div class="post_type-list"> <?php
+                                $cpt_lists = $_SESSION['get_post_type'];
                                 foreach ($cpt_lists as $list) {
                                     $cpt_name  = !empty($list->post_type) ? $list->post_type : '';
                                     ($cpt_name === $cpt_name) ?  $checked = 'checked' : $checked = '';
-                                    echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list ' value='$cpt_name ' $checked >  $cpt_name  <br>" : '' ;     
-                                }?> 
+                                    echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_name' $checked> $cpt_name <br>" : '' ;     
+                                } ?> 
                             </div>
                         </div> <?php
                     } 
                 ?>
-
+            </div>
         </div>
     </div>
-
 
 </body>
 

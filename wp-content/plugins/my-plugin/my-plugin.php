@@ -76,7 +76,7 @@
                     $tagErr = 'Please enter tag!';
                 } else {
                     if (!preg_match("/^[A-Za-z ]*$/", $tag)) {
-                         $tagErr = 'Only alphabetic characters are allowed!';
+                        $tagErr = 'Only alphabetic characters are allowed!';
                     }
                 }
         
