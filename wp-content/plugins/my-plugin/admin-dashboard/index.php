@@ -73,9 +73,11 @@
                             </div>
                             <div class="post_type-list"> <?php
                                 $cpt_lists = $_SESSION['get_post_type'];
+                               // echo "<pre>";
+                              //  print_r($cpt_lists);
                                 foreach ($cpt_lists as $list) {
                                     $cpt_name  = !empty($list->post_type) ? $list->post_type : '';
-                                    ($cpt_name === $cpt_name) ?  $checked = 'checked' : $checked = '';
+                                    ($list->activate == true) ?  $checked = 'checked' : $checked = '';
                                     echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_name' $checked> $cpt_name <br>" : '' ;     
                                 } ?> 
                             </div>

@@ -24,12 +24,21 @@
                 `post_type` VARCHAR(34) NOT NULL,
                 `category` VARCHAR(34) NOT NULL,
                 `tag` VARCHAR(15) NOT NULL,
+                `activate` VARCHAR(15) DEFAULT '1',
+                `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 PRIMARY KEY (`id`)
             ) ENGINE = InnoDB";
             $wpdb->query($sql);
         }
-
-        // Register custom post type based on user input
+        
+        register_deactivation_hook( __FILE__, 'wp_plugin_deactivation' );
+        function wp_plugin_deactivation() {
+            global $wpdb, $table_prefix; 
+            $table_name = $table_prefix . 'cpt';
+            // Drop the table if it exists
+            $wpdb->query("DROP TABLE IF EXISTS $table_name");
+        }
+        // Register cpt based on user input
         function create_cpt() {
             global $wpdb, $table_prefix;
         
@@ -40,7 +49,7 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
-                $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : '';
+                $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
                 $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
         
