@@ -101,9 +101,9 @@ jQuery(document).ready(function($){
             data: {postName: postName},
             success: function(response) {
                 if (response == true) {
-                    alert(postName + );
+                    alert(response);
                 } else {
-                    alert("Failed to unregister " + postName);
+                    alert(response );
                 }
             }
         });
