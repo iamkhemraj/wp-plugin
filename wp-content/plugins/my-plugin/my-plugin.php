@@ -21,12 +21,13 @@
             // Create table
             $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 `id` INT NOT NULL AUTO_INCREMENT,
-                `post_type` VARCHAR(34) NOT NULL,
-                `category` VARCHAR(34) NOT NULL,
-                `tag` VARCHAR(15) NOT NULL,
-                `activate` VARCHAR(15) DEFAULT '1',
+                `post_type`  VARCHAR(34) NOT NULL,
+                `slug`       VARCHAR(14) NOT NULL  unique,
+                `category`   VARCHAR(34) NOT NULL,
+                `tag`        VARCHAR(15) NOT NULL,
+                `is_activate`   VARCHAR(15) DEFAULT '1',
                 `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                PRIMARY KEY (`id`)
+                 PRIMARY KEY (`id`)
             ) ENGINE = InnoDB";
             $wpdb->query($sql);
         }
@@ -49,12 +50,14 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
+
                 $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
-                $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
-                $tag = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
+                $category  = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+                $tag       = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
+                $slugUrl   = str_replace(' ', '_', trim($post_type));
+                $slug      = strtolower($slugUrl);
         
                 $post_typeErr = $categoryErr = $tagErr = $cpt_exist_err = "";
-        
                 // Validate post type
                 if (empty($post_type)) {
                     $post_typeErr = 'Please enter post type!';
@@ -90,11 +93,12 @@
                 }
         
                 // If no errors, insert data into the database
-                if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err)) {
+                if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err) && !empty($slug)) {
                     $wpdb->insert($table_name, array(
                         'post_type' => $post_type,
-                        'category' => $category,
-                        'tag' => $tag
+                        'slug'      => $slug,
+                        'category'  => $category,
+                        'tag'       => $tag
                     ));
                 } else {
                     // Set error messages in session

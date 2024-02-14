@@ -77,7 +77,7 @@
                               //  print_r($cpt_lists);
                                 foreach ($cpt_lists as $list) {
                                     $cpt_name  = !empty($list->post_type) ? $list->post_type : '';
-                                    ($list->activate == true) ?  $checked = 'checked' : $checked = '';
+                                    ($list->is_activate == true) ?  $checked = 'checked' : $checked = '';
                                     echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_name' $checked> $cpt_name <br>" : '' ;     
                                 } ?> 
                             </div>
