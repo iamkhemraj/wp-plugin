@@ -40,7 +40,7 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
-                $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
+                $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : '';
                 $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
         
