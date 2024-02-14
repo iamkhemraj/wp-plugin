@@ -73,12 +73,11 @@
                             </div>
                             <div class="post_type-list"> <?php
                                 $cpt_lists = $_SESSION['get_post_type'];
-                               // echo "<pre>";
-                              //  print_r($cpt_lists);
                                 foreach ($cpt_lists as $list) {
                                     $cpt_name  = !empty($list->post_type) ? $list->post_type : '';
+                                    $cpt_ID  = !empty($list->id) ? $list->id : '';
                                     ($list->is_activate == true) ?  $checked = 'checked' : $checked = '';
-                                    echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_name' $checked> $cpt_name <br>" : '' ;     
+                                    echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name <br>" : '' ;     
                                 } ?> 
                             </div>
                         </div> <?php
@@ -87,25 +86,30 @@
             </div>
         </div>
     </div>
-
 </body>
 
 <script>
 jQuery(document).ready(function($){
 
     $('.cpt-list').change(function () {
-        const postName = $(this).val().trim(); // Get post type value
-        const path = '<?php echo plugin_dir_url(__dir__).'/libs/unregister-cpt.php' ?>'; // Get the path to your PHP script using PHP
-        console.log(path );
+        const postID = $(this).val().trim(); // Get post type value
+        const path = '<?php echo plugin_dir_url(__dir__).'/libs/unregister-cpt.php' ?>'; // Get the path to 
+
         $.ajax({
-            url: path , // Concatenate the PHP-generated path with the PHP script name
+            url: path,
             type: 'POST',
-            data: {postName: postName},
+            data: {postID: postID},
             success: function(response) {
                 if (response == true) {
                     alert(response);
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000); // Reload page after 1 second (1000 milliseconds)
                 } else {
-                    alert(response );
+                    alert(response);
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000); // Refresh page after this message
                 }
             }
         });
