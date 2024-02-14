@@ -7,40 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom post</title>
-    <style>
-        .post-type-section {
-            border: 1px solid #c3c4c7;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-            padding: 20px 0px 20px 20px;
-            width: 70%;
-        }
-
-        .post-title h1 {
-            font-weight: 400;
-            font-size: 23px;
-        }
-
-        input[type='text'] {
-            width: 80%;
-        }
-
-        .error {
-            color: red;
-        }
-
-        #create-custom-post {
-            color: #fff !important;
-            background-color: #2271b1 !important;
-        }
-
-        .get_post_type {
-            border: 1px solid #c3c4c7;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
-            padding: 20px 0px 20px 20px;
-            width: 30%;
-            margin-top: 53px;
-        }
-    </style>
 </head>
 
 <body>
@@ -127,15 +93,15 @@ jQuery(document).ready(function($){
 
     $('.cpt-list').change(function () {
         const postName = $(this).val().trim(); // Get post type value
-        const path = '<?php echo plugin_dir_url(__dir__).'/libs/register-post.php' ?>'; // Get the path to your PHP script using PHP
+        const path = '<?php echo plugin_dir_url(__dir__).'/libs/unregister-cpt.php' ?>'; // Get the path to your PHP script using PHP
         console.log(path );
         $.ajax({
             url: path , // Concatenate the PHP-generated path with the PHP script name
             type: 'POST',
             data: {postName: postName},
             success: function(response) {
-                if (response === 'success') {
-                    alert(postName + " has been unregistered successfully!");
+                if (response == true) {
+                    alert(postName + );
                 } else {
                     alert("Failed to unregister " + postName);
                 }
