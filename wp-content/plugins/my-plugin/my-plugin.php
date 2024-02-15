@@ -7,9 +7,10 @@
      * Author URI: https://author.com
      * Version: 1.0.0
      */
-
-        // Register post type file
-        //require_once("libs/unregister-cpt.php");
+        if ( ! defined( 'ABSPATH' ) ) {
+            exit; // Exit if accessed directly
+        }
+           
         require_once( __DIR__ . "/functions.php");
         
         // Wp activation hook 
