@@ -1,8 +1,10 @@
 <?php
-
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit; // Exit if accessed directly
+    }
 function register_post_types($cpt_data) // Register Custom post type
 {
-    if ($cpt_data) {
+    if (isset($cpt_data)) {
         foreach ($cpt_data as $cpt) {
             if ($cpt->is_activate == true) { // Check if status is active
                 $post_type = $cpt->post_type;
