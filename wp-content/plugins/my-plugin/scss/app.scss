@@ -1,4 +1,3 @@
-  @import "reset"; // import resent.scss file here
   @mixin content_url{
     content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg")!important;
   }
