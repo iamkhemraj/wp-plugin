@@ -7,9 +7,10 @@
      * Author URI: https://author.com
      * Version: 1.0.0
      */
-
-        // Register post type file
-        require_once("libs/register-post.php");
+        if ( ! defined( 'ABSPATH' ) ) {
+            exit; // Exit if accessed directly
+        }
+           
         require_once( __DIR__ . "/functions.php");
         
         // Wp activation hook 
@@ -21,15 +22,25 @@
             // Create table
             $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 `id` INT NOT NULL AUTO_INCREMENT,
-                `post_type` VARCHAR(34) NOT NULL,
-                `category` VARCHAR(34) NOT NULL,
-                `tag` VARCHAR(15) NOT NULL,
-                PRIMARY KEY (`id`)
+                `post_type`  VARCHAR(34) NOT NULL,
+                `slug`       VARCHAR(14) NOT NULL  unique,
+                `category`   VARCHAR(34) NOT NULL,
+                `tag`        VARCHAR(15) NOT NULL,
+                `is_activate`   VARCHAR(15) DEFAULT '1',
+                `created_on` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                 PRIMARY KEY (`id`)
             ) ENGINE = InnoDB";
             $wpdb->query($sql);
         }
-
-        // Register custom post type based on user input
+        
+        register_deactivation_hook( __FILE__, 'wp_plugin_deactivation' );
+        function wp_plugin_deactivation() {
+            global $wpdb, $table_prefix; 
+            $table_name = $table_prefix . 'cpt';
+            // Drop the table if it exists
+            $wpdb->query("DROP TABLE IF EXISTS $table_name");
+        }
+        // Register cpt based on user input
         function create_cpt() {
             global $wpdb, $table_prefix;
         
@@ -40,12 +51,14 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
-                $post_type = isset($_POST['post_type']) ? sanitize_text_field($_POST['post_type']) : '';
-                $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
-                $tag = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
+
+                $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
+                $category  = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+                $tag       = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
+                $slugUrl   = str_replace(' ', '_', trim($post_type));
+                $slug      = strtolower($slugUrl);
         
                 $post_typeErr = $categoryErr = $tagErr = $cpt_exist_err = "";
-        
                 // Validate post type
                 if (empty($post_type)) {
                     $post_typeErr = 'Please enter post type!';
@@ -57,7 +70,7 @@
                         $result = $wpdb->get_results("SELECT * FROM $table_name WHERE `post_type` = '$post_type'");
                         if ($result) {
                             session_start();
-                            $cpt_exist_err = "$post_type post type already exists!";
+                            $cpt_exist_err = "$post_type post type is already exists!";
                         }
                     }
                 }
@@ -81,11 +94,12 @@
                 }
         
                 // If no errors, insert data into the database
-                if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err)) {
+                if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err) && !empty($slug)) {
                     $wpdb->insert($table_name, array(
                         'post_type' => $post_type,
-                        'category' => $category,
-                        'tag' => $tag
+                        'slug'      => $slug,
+                        'category'  => $category,
+                        'tag'       => $tag
                     ));
                 } else {
                     // Set error messages in session
