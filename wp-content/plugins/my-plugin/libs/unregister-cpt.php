@@ -2,6 +2,15 @@
 
     // Load WordPress environment
     require_once($_SERVER['DOCUMENT_ROOT'] . '/wp-load.php');
+    if (isset($_POST['del'])) {
+        $del_postID = isset($_POST['del']) ? intval($_POST['del']) : 0; // Sanitize and validate the postID for deletion.
+    
+        // Your delete query.
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'cpt';
+        $wpdb->delete($table_name, array('id' => $del_postID), array('%d'));
+        echo 'Post type  deleted successfully.';
+    }
     if (isset($_POST['postID'])) {
         global $wpdb, $table_prefix; 
         $table_name = $table_prefix.'cpt';
