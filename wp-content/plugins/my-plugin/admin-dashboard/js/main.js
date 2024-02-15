@@ -20,30 +20,5 @@ jQuery(document).ready(function ($) {
     toggleFieldVisibility(isChecked, property);
   });
 
-//   $('.cpt-list').change(function () {  // Check value cpt is exsit or not 
-//     const cptArray = $('.cpt-list:checked').map(function () {
-//       return $(this).val().trim();
-//     }).get();
-
-//     const postName = $(this).val().trim(); // get post type val
-  
-//     if (cptArray.indexOf(postName)) {
-//         unregister_cpt(postName);
-//         function unregister_cpt($post_type){
-
-
-//         }
-
-//     } else {
-//       alert(postName+ "does not unregister !" );
-//     }
-//   });
-
-
-
-
-
-
-
 });
 
