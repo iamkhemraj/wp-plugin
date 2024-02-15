@@ -83,7 +83,8 @@
                                         $cpt_name  = !empty($list->post_type) ? $list->post_type : '';
                                         $cpt_ID  = !empty($list->id) ? $list->id : '';
                                         ($list->is_activate == true) ?  $checked = 'checked' : $checked = '';
-                                        echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name <br>" : '' ;     
+                                        echo !empty($cpt_name) ?  "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name <br>" : '' ;
+                                                
                                     } ?> 
                                 </div>
                             </div> <?php
