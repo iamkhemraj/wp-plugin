@@ -7,21 +7,22 @@
  
 
 // Add style in register form section
-.register-form-section{
+.register__form{
  
   background-color: #160e1652 !important;
   padding: 18px;
-  
-  .post-type-section {
+  &__section {
     border: $border;
     box-shadow: $boxShadow;
     padding: 20px 0px 20px 20px;
-
-    .post-title h1 {
-      font-weight: 400;
-      font-size: 23px;
-    }
-    input[type='text'] {
+    .post_title{
+      h1 {
+        font-weight: 400;
+        font-size: 23px;
+      }
+    } 
+      
+    input[type=text] {
       width: 80%;
     }
     input[type=checkbox]:focus , input[type=text]:focus {

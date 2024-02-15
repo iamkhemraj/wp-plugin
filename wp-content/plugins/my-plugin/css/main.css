@@ -1,42 +1,42 @@
-.register-form-section {
+.register__form {
   background-color: rgba(22, 14, 22, 0.3215686275) !important;
   padding: 18px;
 }
-.register-form-section .post-type-section {
+.register__form__section {
   border: 1px solid #c3c4c7;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   padding: 20px 0px 20px 20px;
 }
-.register-form-section .post-type-section .post-title h1 {
+.register__form__section .post_title h1 {
   font-weight: 400;
   font-size: 23px;
 }
-.register-form-section .post-type-section input[type=text] {
+.register__form__section input[type=text] {
   width: 80%;
 }
-.register-form-section .post-type-section input[type=checkbox]:focus, .register-form-section .post-type-section input[type=text]:focus {
+.register__form__section input[type=checkbox]:focus, .register__form__section input[type=text]:focus {
   border-color: #000 !important;
   box-shadow: 0 0 0 1px #000 !important;
   accent-color: #000;
 }
-.register-form-section .post-type-section input[type=checkbox]:checked::before {
+.register__form__section input[type=checkbox]:checked::before {
   content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg") !important;
 }
-.register-form-section .post-type-section .error {
+.register__form__section .error {
   color: red;
 }
-.register-form-section .post-type-section #create-custom-post {
+.register__form__section #create-custom-post {
   color: #fff !important;
   background-color: #000 !important;
 }
-.register-form-section .get_post_type {
+.register__form .get_post_type {
   border: 1px solid #c3c4c7;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   padding: 20px 0px 20px 20px;
   width: 30%;
   margin-top: 53px;
 }
-.register-form-section .get_post_type input[type=checkbox]:checked::before {
+.register__form .get_post_type input[type=checkbox]:checked::before {
   content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg") !important;
 }
 

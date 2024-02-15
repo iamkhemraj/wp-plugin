@@ -17,11 +17,11 @@
 <body>
 
     <div class="container p-4">
-        <div class="register-form-section">
+        <div class="register__form">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="post-type-section">
-                        <div class="post-title">
+                    <div class="register__form__section">
+                        <div class="post_title">
                             <h1>Register Post Type</h1>
                         </div>
                         <form id="form" method="POST">
