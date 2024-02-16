@@ -63,14 +63,13 @@ if (!defined('ABSPATH')) {
                             </div><br>
                             <button type="submit" id="create-custom-post" class="btn" name="create_post_type">Create
                                 post</button>
-                            <?= isset($_SESSION['dataInsert']) ? ' <span class="alert "> ' . $_SESSION["dataInsert"] . '</span>' : ''; ?>
+                            <?= isset($_SESSION['dataInsert']) ? ' <span class="alert " id="alert"> ' . $_SESSION["dataInsert"] . '</span>' : ''; ?>
                         </form>
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <!-- Show all custom post type -->
-                    <?php
+                <div class="col-md-12"> <?php
+                    // Show all custom post type 
                     if (isset($_SESSION['get_post_type']) && !empty($_SESSION['get_post_type'])) { ?>
                         <div class="get_post_type">
                             <div class="post-title">
@@ -85,18 +84,16 @@ if (!defined('ABSPATH')) {
                                     ($list->is_activate == true) ? $checked = 'checked' : $checked = '';
                                     echo !empty($cpt_name) ? "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name <br> " : '';
                                     echo !empty($cpt_name) ?
-                                        "<form class='deleteForm' method='POST' action =''>
+                                    "<form class='deleteForm' method='POST' action =''>
                                         <input type='hidden' name='del' class='delete_cpt' value='" . $cpt_ID . "'>
                                         <input type='button'class='deleteButton text-danger' value =' Delete'> <br>
-                                    </form><br>"
-                                        : '';
+                                    </form><br>" : '';
 
                                 } ?>
                             </div>
                         </div>
                         <?php
-                    }
-                    ?>
+                    } ?>
                 </div>
             </div>
         </div>
@@ -106,43 +103,43 @@ if (!defined('ABSPATH')) {
 </html>
 
 <script>
-jQuery(document).ready(function($){
+    jQuery(document).ready(function($){
 
-  $('.cpt-list').change(function () {
-    const postID = $(this).val().trim(); // Get post type value
-    const path   = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; // Get the path to 
-    $.ajax({
-      url: path,
-      type: 'POST',
-      data: {postID: postID},
-      success: function(response) {
-          if (response == true) {
-            alert(response);
-            setTimeout(function() {
-              location.reload();
-            }, 1000); // Reload page after 1 second (1000 milliseconds)
-          } else {
-            alert(response);
-            setTimeout(function() {
-              location.reload();
-            }, 1000); // Refresh page after this message
-          }
-      }
-  });
-});
+        $('.cpt-list').change(function () {
+            const postID = $(this).val().trim(); // Get post type value
+            const path   = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; // Get the path to 
+            $.ajax({
+                url: path,
+                type: 'POST',
+                data: {postID: postID},
+                success: function(response) {
+                    if (response == true) {
+                        alert(response);
+                        setTimeout(function() {
+                        location.reload();
+                        }, 1000); // Reload page after 1 second (1000 milliseconds)
+                    } else {
+                        alert(response);
+                        setTimeout(function() {
+                        location.reload();
+                        }, 1000); // Refresh page after this message
+                    }
+                }
+            });
+        });
 
-$('.deleteButton').click(function(e){ // Delete custom post type Query here
-  $deleteCpt =  $(this).prev('.delete_cpt').val();
-  const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; 
-  $.ajax({
-      url: path,
-      type: 'post',
-      data:{ deleteCpt: $deleteCpt },
-      success : function(response){
-        console.log(response);
-      }
-  });
-});
-});
+        $('.deleteButton').click(function(e){ // Delete custom post type Query here
+            $deleteCpt =  $(this).prev('.delete_cpt').val();
+            const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; 
+            $.ajax({
+                url: path,
+                type: 'post',
+                data:{ deleteCpt: $deleteCpt },
+                success : function(response){
+                    console.log(response);
+                }
+            });
+        });
+    });
     
 </script> 

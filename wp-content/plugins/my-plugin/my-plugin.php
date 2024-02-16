@@ -45,8 +45,8 @@
             global $wpdb, $table_prefix;
           
             $table_name = $table_prefix . 'cpt';
-            $get_cpt = "SELECT * FROM $table_name WHERE id != 0";
-            $cpt_data = $wpdb->get_results($get_cpt);
+            $get_cpt    = "SELECT * FROM $table_name WHERE id != 0";
+            $cpt_data   = $wpdb->get_results($get_cpt);
             register_post_types($cpt_data);
 
             // Check if the form is submitted
@@ -95,6 +95,9 @@
                             'tag'       => $tag
                         ));
                         if ($dataInsert) {
+                            $get_cpt    = "SELECT * FROM $table_name WHERE id != 0";
+                            $cpt_data   = $wpdb->get_results($get_cpt);
+                            register_post_types($cpt_data);
                             $_SESSION['dataInsert'] = " The $post_type post type register sucessfully.";
                         }
 

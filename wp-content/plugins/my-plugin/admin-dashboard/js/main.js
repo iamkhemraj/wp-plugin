@@ -22,4 +22,9 @@ jQuery(document).ready(function ($) {
      toggleFieldVisibility(isChecked, property, check);
   }).change(); 
 
+  //After registration alert close auto
+  setTimeout(function () {  
+    $('#alert').alert('close');  
+  }, 5000); 
+
 });
