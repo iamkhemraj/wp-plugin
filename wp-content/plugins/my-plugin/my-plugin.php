@@ -55,6 +55,7 @@
                 $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
                 $category  = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag       = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
+
                 $slugUrl   = str_replace(' ', '_', trim($post_type));
                 $slug      = strtolower($slugUrl);
         
@@ -76,23 +77,30 @@
                 }
         
                 // Validate category
-                if (empty($category)) {
-                    $categoryErr = 'Please enter category!';
-                } else {
-                    if (!preg_match("/^[A-Za-z ]*$/", $category)) {
-                        $categoryErr = 'Only alphabetic characters are allowed!';
+                if (isset($_POST['category_check'])) {
+                    // If category checkbox is checked
+                    if (empty($category)) {
+                        // If category field is empty
+                        $categoryErr = 'Please enter category!';
+                    } else {
+                        if (!preg_match("/^[A-Za-z ]*$/", $category)) {
+                            // If category contains invalid characters
+                            $categoryErr = 'Only alphabetic characters are allowed!';
+                        }
                     }
                 }
         
                 // Validate tag
-                if (empty($tag)) {
-                    $tagErr = 'Please enter tag!';
-                } else {
-                    if (!preg_match("/^[A-Za-z ]*$/", $tag)) {
-                        $tagErr = 'Only alphabetic characters are allowed!';
-                    }
+                if (isset($_POST['tags_check'])) {
+                    if (empty($tag)) {
+                        $tagErr = 'Please enter tag!';
+                    } else {
+                        if (!preg_match("/^[A-Za-z ]*$/", $tag)) {
+                            $tagErr = 'Only alphabetic characters are allowed!';
+                        }
+                     } 
                 }
-        
+            
                 // If no errors, insert data into the database
                 if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err) && !empty($slug)) {
                     $wpdb->insert($table_name, array(

@@ -39,11 +39,11 @@ if (!defined('ABSPATH')) {
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input type="checkbox" id="category_check">
+                                        <input type="checkbox" id="category_check" name = "category_check">
                                         <label for="category_check" class="form-label">Category</label>
                                         <input type="text" name="category" id="category" class=" form-control input-sm  input-sm d-none" placeholder="Enter category name" maxlength="20" value="<?= isset($_POST['category']) ? $_POST['post_type'] : '' ?>" >
                                         <span class="error d-block"><?= !empty($_SESSION['category_err']) ? $_SESSION['category_err'] : ''; ?></span>
-                                        <input type="checkbox" id="tags_check">
+                                        <input type="checkbox" id="tags_check" name="tags_check">
                                         <label for="tags_check" class="form-label">Tags</label>
                                         <input type="text" name="tags" id="tags" class=" form-control  input-sm d-none" placeholder="Enter tags name" value="<?= isset($_POST['tags']) ? $_POST['tags'] : '' ?>">
                                         <span class="error d-block"><?= !empty($_SESSION['tag_err']) ? $_SESSION['tag_err'] : ''; ?></span>

@@ -1,24 +1,26 @@
 jQuery(document).ready(function ($) {
 
-  function toggleFieldVisibility(checked, property) { // Toggle visibility of cpt fields
-    if (checked) {
+  function toggleFieldVisibility(ischecked, property, check) { // Toggle visibility of cpt fields
+    if (ischecked) {
+      $(check).prop('checked', true); // Ensure checkbox is checked
       $(property).removeClass("d-none");
     } else {
       $(property).addClass("d-none");
     }
   }
 
-  $('#category_check').change(function () { // Query for cotegory check box
+  $('#category_check').change(function () { // Query for category checkbox
+    var check = $(this);
     var isChecked = $(this).prop('checked');
     var property = '#category';
-    toggleFieldVisibility(isChecked, property);
-  });
+    toggleFieldVisibility(isChecked, property, check);
+  }).change(); // Trigger change event initially
 
-  $('#tags_check').change(function () {  // Query for tags check box
+  $('#tags_check').change(function () { // Query for tags checkbox
+    var check = $(this);
     var isChecked = $(this).prop('checked');
     var property = '#tags';
-    toggleFieldVisibility(isChecked, property);
-  });
+    toggleFieldVisibility(isChecked, property, check);
+  }).change(); // Trigger change event initially
 
 });
-
