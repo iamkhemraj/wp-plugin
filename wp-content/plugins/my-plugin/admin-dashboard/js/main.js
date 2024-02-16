@@ -10,17 +10,16 @@ jQuery(document).ready(function ($) {
   }
 
   $('#category_check').change(function () { // Query for category checkbox
-    var check = $(this);
-    var isChecked = $(this).prop('checked');
-    var property = '#category';
-    toggleFieldVisibility(isChecked, property, check);
-  }).change(); // Trigger change event initially
-
+     var check     = $(this);
+     var isChecked = $(this).prop('checked');
+     var property  = '#category';
+     toggleFieldVisibility(isChecked, property, check);
+  }).change(); 
   $('#tags_check').change(function () { // Query for tags checkbox
-    var check = $(this);
-    var isChecked = $(this).prop('checked');
-    var property = '#tags';
-    toggleFieldVisibility(isChecked, property, check);
-  }).change(); // Trigger change event initially
+     var check     = $(this);
+     var isChecked = $(this).prop('checked');
+     var property  = '#tags';
+     toggleFieldVisibility(isChecked, property, check);
+  }).change(); 
 
 });
