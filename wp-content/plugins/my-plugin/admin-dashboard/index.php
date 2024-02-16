@@ -75,14 +75,14 @@ if (!defined('ABSPATH')) {
                             <div class="post-title">
                                 <h6>All Post Type</h6>
                             </div>
-                            <div class="post_type-list ">
+                            <div class="post_type-list d-inline">
                                 <?php
                                 $cpt_lists = $_SESSION['get_post_type'];
                                 foreach ($cpt_lists as $list) {
                                     $cpt_name = !empty($list->post_type) ? $list->post_type : '';
                                     $cpt_ID = !empty($list->id) ? $list->id : '';
                                     ($list->is_activate == true) ? $checked = 'checked' : $checked = '';
-                                    echo !empty($cpt_name) ? "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name <br> " : '';
+                                    echo !empty($cpt_name) ? "<input type='checkbox' name='cpt-list' class='cpt-list' value='$cpt_ID' $checked> $cpt_name  " : '';
                                     echo !empty($cpt_name) ?
                                     "<form class='deleteForm' method='POST' action =''>
                                         <input type='hidden' name='del' class='delete_cpt' value='" . $cpt_ID . "'>

@@ -29,6 +29,11 @@
   color: #fff !important;
   background-color: #000 !important;
 }
+.register__form__section form span#alert {
+  background: #84b584;
+  color: rgba(2, 12, 4, 0.7098039216);
+  padding: 4px;
+}
 .register__form .get_post_type {
   border: 1px solid #c3c4c7;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
