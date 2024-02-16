@@ -25,3 +25,4 @@ function register_post_types($cpt_data) // Register Custom post type
     }
 }
 
+?>
