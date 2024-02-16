@@ -43,7 +43,6 @@
         // Register cpt based on user input
         function create_cpt() {
             global $wpdb, $table_prefix;
-            session_start();
         
             $table_name = $table_prefix . 'cpt';
             $get_cpt = "SELECT * FROM $table_name WHERE id != 0";
@@ -52,6 +51,7 @@
         
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
+
                 $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
                 $category  = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag       = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
@@ -59,7 +59,6 @@
                 $slug      = strtolower($slugUrl);
         
                 $post_typeErr = $categoryErr = $tagErr = $cpt_exist_err = "";
-        
                 // Validate post type
                 if (empty($post_type)) {
                     $post_typeErr = 'Please enter post type!';
@@ -70,7 +69,8 @@
                         // Check if the post type already exists
                         $result = $wpdb->get_results("SELECT * FROM $table_name WHERE `post_type` = '$post_type'");
                         if ($result) {
-                            $cpt_exist_err = "$post_type post type already exists!";
+                            session_start();
+                            $cpt_exist_err = "$post_type post type is already exists!";
                         }
                     }
                 }
