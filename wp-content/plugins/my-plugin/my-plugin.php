@@ -43,84 +43,65 @@
         // Register cpt based on user input
         function create_cpt() {
             global $wpdb, $table_prefix;
-        
+          
             $table_name = $table_prefix . 'cpt';
             $get_cpt = "SELECT * FROM $table_name WHERE id != 0";
             $cpt_data = $wpdb->get_results($get_cpt);
             register_post_types($cpt_data);
-        
+
             // Check if the form is submitted
             if (isset($_POST['create_post_type'])) {
-
                 $post_type = isset($_POST['post_type']) ? ucwords(sanitize_text_field($_POST['post_type'])) : '';
                 $category  = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
                 $tag       = isset($_POST['tags']) ? sanitize_text_field($_POST['tags']) : '';
-
                 $slugUrl   = str_replace(' ', '_', trim($post_type));
                 $slug      = strtolower($slugUrl);
-        
-                $post_typeErr = $categoryErr = $tagErr = $cpt_exist_err = "";
+
                 // Validate post type
                 if (empty($post_type)) {
-                    $post_typeErr = 'Please enter post type!';
-                } else {
-                    if (!preg_match("/^[A-Za-z ]*$/", $post_type)) {
-                        $post_typeErr = 'Only alphabetic characters are allowed!';
-                    } else {
-                        // Check if the post type already exists
-                        $result = $wpdb->get_results("SELECT * FROM $table_name WHERE `post_type` = '$post_type'");
-                        if ($result) {
-                            session_start();
-                            $cpt_exist_err = "$post_type post type is already exists!";
-                        }
-                    }
+                    $_SESSION['post_type_err'] = 'Please enter post type!';
+                } else if (!preg_match("/^[A-Za-z ]*$/", $post_type)) {
+                    $_SESSION['post_type_err'] = 'Only alphabetic characters are allowed for post type!';
                 }
-        
-                // Validate category
-                if (isset($_POST['category_check'])) {
-                    // If category checkbox is checked
-                    if (empty($category)) {
-                        // If category field is empty
-                        $categoryErr = 'Please enter category!';
-                    } else {
-                        if (!preg_match("/^[A-Za-z ]*$/", $category)) {
-                            // If category contains invalid characters
-                            $categoryErr = 'Only alphabetic characters are allowed!';
-                        }
-                    }
+
+                // Validate category if checkbox is checked
+                if (isset($_POST['category_check']) && empty($category)) {
+                    $_SESSION['category_err'] = 'Please enter category!';
+                } else if (!empty($category) && !preg_match("/^[A-Za-z ]*$/", $category)) {
+                    $_SESSION['category_err'] = 'Only alphabetic characters are allowed for category!';
                 }
-        
-                // Validate tag
-                if (isset($_POST['tags_check'])) {
-                    if (empty($tag)) {
-                        $tagErr = 'Please enter tag!';
-                    } else {
-                        if (!preg_match("/^[A-Za-z ]*$/", $tag)) {
-                            $tagErr = 'Only alphabetic characters are allowed!';
-                        }
-                     } 
+
+                // Validate tag if checkbox is checked
+                if (isset($_POST['tags_check']) && empty($tag)) {
+                    $_SESSION['tag_err'] = 'Please enter tag!';
+                } else if (!empty($tag) && !preg_match("/^[A-Za-z ]*$/", $tag)) {
+                    $_SESSION['tag_err'] = 'Only alphabetic characters are allowed for tag!';
                 }
-            
+
+                // Check if the post type already exists
+                $result = $wpdb->get_results("SELECT * FROM $table_name WHERE `post_type` = '$post_type'");
+                if ($result) {
+                    $_SESSION['cpt_exists'] = "$post_type post type already exists!";
+                }
+
                 // If no errors, insert data into the database
-                if (empty($post_typeErr) && empty($categoryErr) && empty($tagErr) && empty($cpt_exist_err) && !empty($slug)) {
-                    $wpdb->insert($table_name, array(
-                        'post_type' => $post_type,
-                        'slug'      => $slug,
-                        'category'  => $category,
-                        'tag'       => $tag
-                    ));
-                } else {
-                    // Set error messages in session
-                    $_SESSION['error_message'] = $post_typeErr;
-                    $_SESSION['category_err']  = $categoryErr;
-                    $_SESSION['tag_err']       = $tagErr;
-                    $_SESSION['cpt_exists']    = $cpt_exist_err;
+                if (empty($_SESSION['post_type_err']) && empty($_SESSION['category_err']) && empty($_SESSION['tag_err']) && empty($_SESSION['cpt_exists']) && !empty($slug)) {
+                    // Only insert data if the corresponding checkbox is checked and the field is not empty
+                    if (!empty($post_type) && !empty($category) && !empty($tag) && !empty($slug)) {
+                        $dataInsert =  $wpdb->insert($table_name, array(
+                            'post_type' => $post_type,
+                            'slug'      => $slug,
+                            'category'  => $category,
+                            'tag'       => $tag
+                        ));
+                        if ($dataInsert) {
+                            $_SESSION['dataInsert'] = " The $post_type post type register sucessfully.";
+                        }
+
+                    }
                 }
-        
-                // Refresh CPT data after insertion
-                $cpt_data = $wpdb->get_results($get_cpt);
-                register_post_types($cpt_data);
             }
+
         }
         
         add_action('init', 'create_cpt');
