@@ -151,7 +151,7 @@ if (!defined('ABSPATH')) {
                         type: 'post',
                         data:{ deleteCpt: $deleteCpt },
                         success : function(response){
-                            $('.alert').text(response);
+                            alert(response);
                         }
                     });
                    
