@@ -67,16 +67,16 @@ if (!defined('ABSPATH')) {
                         </form>
                     </div>
                 </div>
-
                 <div class="col-md-12"> <?php
                     // Show all custom post type 
                     if (isset($_SESSION['get_post_type']) && !empty($_SESSION['get_post_type'])) { ?>
                         <div class="get_post_type">
                             <div class="post-title">
+                             <span class="alert text-success" id="alert"></span> 
                                 <h6>All Post Type</h6>
                             </div>
                             <div class="post_type-list d-inline">
-                                <table class="table table-bordered " >
+                                <table class="table-bordered " cellpadding="10px">
                                     <thead>
                                         <tr>
                                             <th scope="col">Post Type</th>
@@ -96,7 +96,7 @@ if (!defined('ABSPATH')) {
                                                 <td>
                                                     <form class="deleteForm" method="POST" action="">
                                                         <input type="hidden" name="del" class="delete_cpt" value="<?= $cpt_ID ?>">
-                                                        <input type="button" class="deleteButton btn btn-danger" value="Delete">
+                                                        <button type="button" class="deleteButton btn btn-danger" value="Delete" >delete</button>
                                                     </form>
                                                 </td>
                                             </tr><?php 
@@ -142,15 +142,24 @@ if (!defined('ABSPATH')) {
 
         $('.deleteButton').click(function(e){ // Delete custom post type Query here
             $deleteCpt =  $(this).prev('.delete_cpt').val();
-            const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; 
-            $.ajax({
-                url: path,
-                type: 'post',
-                data:{ deleteCpt: $deleteCpt },
-                success : function(response){
-                    console.log(response);
-                }
-            });
+            const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>';
+            $('.deleteButton').click(function(){
+              
+                if (confirm("Do you want delete this post type!")) {
+                    $.ajax({
+                        url: path,
+                        type: 'post',
+                        data:{ deleteCpt: $deleteCpt },
+                        success : function(response){
+                         $('.alert').text(response);
+                        }
+                    });
+                   
+                }else{
+                    $('.alert').text('Not delete post type');
+                } 
+            }); 
+            
         });
     });
     
