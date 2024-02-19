@@ -76,39 +76,35 @@ if (!defined('ABSPATH')) {
                                 <h6>All Post Type</h6>
                             </div>
                             <div class="post_type-list d-inline">
-    <table class="table table-bordered " >
-        <thead>
-            <tr>
-                <th scope="col">Post Type</th>
-                <th scope="col">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $cpt_lists = $_SESSION['get_post_type'];
-            foreach ($cpt_lists as $list) {
-                $cpt_name = !empty($list->post_type) ? $list->post_type : '';
-                $cpt_ID = !empty($list->id) ? $list->id : '';
-                ($list->is_activate == true) ? $checked = 'checked' : $checked = '';
-            ?>
-            <tr>
-                <td>
-                    <input type="checkbox" name="cpt-list" class="cpt-list" value="<?= $cpt_ID ?>" <?= $checked ?>> <?= $cpt_name ?>
-                </td>
-                <td>
-                    <form class="deleteForm" method="POST" action="">
-                        <input type="hidden" name="del" class="delete_cpt" value="<?= $cpt_ID ?>">
-                        <input type="button" class="deleteButton btn btn-danger" value="Delete">
-                    </form>
-                </td>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
-
-                        </div>
-                        <?php
+                                <table class="table table-bordered " >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Post Type</th>
+                                            <th scope="col">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> <?php
+                                        $cpt_lists = $_SESSION['get_post_type'];
+                                        foreach ($cpt_lists as $list) {
+                                            $cpt_name = !empty($list->post_type) ? $list->post_type : '';
+                                            $cpt_ID = !empty($list->id) ? $list->id : '';
+                                            ($list->is_activate == true) ? $checked = 'checked' : $checked = ''; ?>
+                                            <tr>
+                                                <td>
+                                                    <input type="checkbox" name="cpt-list" class="cpt-list" value="<?= $cpt_ID ?>" <?= $checked ?>> <?= $cpt_name ?>
+                                                </td>
+                                                <td>
+                                                    <form class="deleteForm" method="POST" action="">
+                                                        <input type="hidden" name="del" class="delete_cpt" value="<?= $cpt_ID ?>">
+                                                        <input type="button" class="deleteButton btn btn-danger" value="Delete">
+                                                    </form>
+                                                </td>
+                                            </tr><?php 
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <?php
                     } ?>
                 </div>
             </div>
