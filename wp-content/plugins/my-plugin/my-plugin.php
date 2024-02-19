@@ -63,9 +63,9 @@
                 } else if (!preg_match("/^[A-Za-z ]*$/", $post_type)) {
                     $_SESSION['post_type_err'] = 'Only alphabetic characters are allowed for post type!';
                 }
-                if(empty($_POST['category_check']) && empty($_POST['tags_check'])){
-                    $_SESSION['ctg_tag_err'] = 'Please select at list any one!';
-                }
+                // if(empty($_POST['category_check']) && empty($_POST['tags_check'])){
+                //     $_SESSION['ctg_tag_err'] = 'Please select at list any one!';
+                // }
                 // Validate category if checkbox is checked
                 if (isset($_POST['category_check']) && empty($category)) {
                     $_SESSION['category_err'] = 'Please enter category!';
@@ -89,7 +89,7 @@
                 // If no errors, insert data into the database
                 if (empty($_SESSION['post_type_err']) && empty($_SESSION['category_err']) && empty($_SESSION['tag_err']) && empty($_SESSION['cpt_exists']) && !empty($slug)) {
                     // Only insert data if the corresponding checkbox is checked and the field is not empty
-                    if (!empty($post_type) && !empty($category) && !empty($tag) && !empty($slug)) {
+                    if (!empty($post_type) || !empty($category) || !empty($tag) && !empty($slug)) {
                         $dataInsert =  $wpdb->insert($table_name, array(
                             'post_type' => $post_type,
                             'slug'      => $slug,
