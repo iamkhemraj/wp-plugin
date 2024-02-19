@@ -28,11 +28,11 @@ function register_post_types($cpt_data) // Register Custom post type
                 ));
 
                 if (isset($category_data) && !empty($category_data)) {  // Insert category       
-                    $term = wp_insert_term($category_data, 'category', array('term_id' => $term_id));   
+                    $term = wp_insert_term($category_data, $category_data, array('term_id' => $term_id));   
                 }
                 
                 if (isset($tag_data) && !empty($tag_data)) { // Insert tags
-                    $term = wp_insert_term($tag_data, 'post_tag', array('term_id' => $term_id));     
+                    $term = wp_insert_term($tag_data, $category_data, array('term_id' => $term_id));     
                 }
             }
         }
