@@ -145,18 +145,18 @@ if (!defined('ABSPATH')) {
             const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>';
             $('.deleteButton').click(function(){
               
-                if (confirm("Do you want delete this post type!")) {
+                if (confirm("Do you want delete this post type ?")) {
                     $.ajax({
                         url: path,
                         type: 'post',
                         data:{ deleteCpt: $deleteCpt },
                         success : function(response){
-                           alert(response);
+                            $('.alert').text(response);
                         }
                     });
                    
                 }else{
-                    $('.alert').text('Not delete post type');
+                    $('.alert').text('Post type does not delete !');
                 } 
             }); 
             
