@@ -15,23 +15,23 @@ function register_post_types($cpt_data) // Register Custom post type
                 $category_data = $cpt->category;
                 
                 register_post_type($slug, array(  // Register custom post type
-                    'labels' => array(
-                        'name'          => $post_type,
-                        'singular_name' => $post_type
+                    'labels'        => array(
+                    'name'          => $post_type,
+                    'singular_name' => $post_type
                     ),
                     'public'      => true,
                     'has_archive' => true,
                     'rewrite'     => array(
-                        'slug'    =>  $slug
+                    'slug'        =>  $slug
                     ),
                     'taxonomies'  => array('category', 'post_tag')
                 ));
 
-                if (isset($category_data) && !empty($category_data)) {         
+                if (isset($category_data) && !empty($category_data)) {  // Insert category       
                     $term = wp_insert_term($category_data, 'category', array('term_id' => $term_id));   
                 }
                 
-                if (isset($tag_data) && !empty($tag_data)) {
+                if (isset($tag_data) && !empty($tag_data)) { // Insert tags
                     $term = wp_insert_term($tag_data, 'post_tag', array('term_id' => $term_id));     
                 }
             }
