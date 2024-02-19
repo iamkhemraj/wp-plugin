@@ -63,7 +63,9 @@
                 } else if (!preg_match("/^[A-Za-z ]*$/", $post_type)) {
                     $_SESSION['post_type_err'] = 'Only alphabetic characters are allowed for post type!';
                 }
-
+                if(empty($_POST['category_check']) && empty($_POST['tags_check'])){
+                    $_SESSION['ctg_tag_err'] = 'Please select at list any one!';
+                }
                 // Validate category if checkbox is checked
                 if (isset($_POST['category_check']) && empty($category)) {
                     $_SESSION['category_err'] = 'Please enter category!';
@@ -72,9 +74,7 @@
                 }
 
                 // Validate tag if checkbox is checked
-                if(empty($category) && empty($tag)){
-                    $_SESSION['ctg_tag_err'] = 'Please select at list any one!';
-                }else if (isset($_POST['tags_check']) && empty($tag)) {
+                if (isset($_POST['tags_check']) && empty($tag)) {
                     $_SESSION['tag_err'] = 'Please enter tag!';
                 } else if (!empty($tag) && !preg_match("/^[A-Za-z ]*$/", $tag)) {
                     $_SESSION['tag_err'] = 'Only alphabetic characters are allowed for tag!';
