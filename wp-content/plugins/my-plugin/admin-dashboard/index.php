@@ -152,7 +152,10 @@ if (!defined('ABSPATH')) {
                         data:{ deleteCpt: $deleteCpt },
                         success : function(response){
                             alert(response);
-                        }
+                            setTimeout(function() {
+                                location.reload();
+                                }, 1000); // Refresh page after this message
+                            }
                     });
                    
                 }else{
