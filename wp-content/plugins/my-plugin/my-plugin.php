@@ -72,7 +72,9 @@
                 }
 
                 // Validate tag if checkbox is checked
-                if (isset($_POST['tags_check']) && empty($tag)) {
+                if(empty($category) && empty($tag)){
+                    $_SESSION['ctg_tag_err'] = 'Please select at list any one!';
+                }else if (isset($_POST['tags_check']) && empty($tag)) {
                     $_SESSION['tag_err'] = 'Please enter tag!';
                 } else if (!empty($tag) && !preg_match("/^[A-Za-z ]*$/", $tag)) {
                     $_SESSION['tag_err'] = 'Only alphabetic characters are allowed for tag!';

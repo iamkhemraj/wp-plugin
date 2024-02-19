@@ -40,6 +40,7 @@ if (!defined('ABSPATH')) {
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <?= !empty($_SESSION['ctg_tag_err']) ? '<span class="error">'.$_SESSION['ctg_tag_err'].'</span>' : '' ;?>
                                     <div class="form-group">
                                         <input type="checkbox" id="category_check" name="category_check">
                                         <label for="category_check" class="form-label">Category</label>
