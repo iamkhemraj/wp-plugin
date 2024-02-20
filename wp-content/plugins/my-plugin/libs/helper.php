@@ -2,7 +2,7 @@
     if (!defined('ABSPATH')) {
         exit; // Exit if accessed directly
     }
-
+    
     function register_post_types($cpt_data) { //Post type register here
         if (isset($cpt_data) && !empty($cpt_data)) {
             foreach ($cpt_data as $cpt) {
