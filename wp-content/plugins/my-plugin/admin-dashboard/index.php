@@ -97,7 +97,7 @@ if (!defined('ABSPATH')) {
                                                 <td>
                                                     <form class="deleteForm" method="POST" action="">
                                                         <input type="hidden" name="del" class="delete_cpt" value="<?= $cpt_ID ?>">
-                                                        <button type="button" class="deleteButton btn btn-danger" value="Delete" >delete</button>
+                                                        <a href ="#" class="deleteButton btn btn-danger" >delete</a>
                                                     </form>
                                                 </td>
                                             </tr><?php 
@@ -116,55 +116,42 @@ if (!defined('ABSPATH')) {
 </html>
 
 <script>
-    jQuery(document).ready(function($){
-
-        $('.cpt-list').change(function () {
-            const postID = $(this).val().trim(); // Get post type value
-            const path   = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>'; // Get the path to 
-            $.ajax({
-                url: path,
-                type: 'POST',
-                data: {postID: postID},
-                success: function(response) {
-                    if (response == true) {
-                        alert(response);
-                        setTimeout(function() {
-                        location.reload();
-                        }, 1000); // Reload page after 1 second (1000 milliseconds)
-                    } else {
-                        alert(response);
-                        setTimeout(function() {
-                        location.reload();
-                        }, 1000); // Refresh page after this message
-                    }
-                }
-            });
-        });
-
-        $('.deleteButton').click(function(e){ // Delete custom post type Query here
-            $deleteCpt =  $(this).prev('.delete_cpt').val();
-            const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>';
-            $('.deleteButton').click(function(){
-              
-                if (confirm("Do you want delete this post type ?")) {
-                    $.ajax({
-                        url: path,
-                        type: 'post',
-                        data:{ deleteCpt: $deleteCpt },
-                        success : function(response){
-                            alert(response);
-                            setTimeout(function() {
-                                location.reload();
-                                }, 1000); // Refresh page after this message
-                            }
-                    });
-                   
-                }else{
-                    $('.alert').text('Post type does not delete !');
-                } 
-            }); 
-            
+   jQuery(document).ready(function($) {
+    // Event delegation for checkbox change
+    $('.get_post_type').on('change', '.cpt-list', function() {
+        const postID = $(this).val().trim();
+        const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>';
+        $.ajax({
+            url: path,
+            type: 'POST',
+            data: { postID: postID },
+            success: function(response) {
+                alert(response);
+                setTimeout(function() {
+                    location.reload();
+                }, 1000);
+            }
         });
     });
-    
-</script> 
+
+    // Event delegation for delete button click
+    $('.get_post_type').on('click', '.deleteButton', function(event) {
+        event.preventDefault();
+        const deleteCpt = $(this).prev('.delete_cpt').val();
+        const path = '<?php echo plugin_dir_url(__DIR__) . '/libs/unregister-cpt.php' ?>';
+        if (confirm("Do you want to delete this post type?")) {
+            $.ajax({
+                url: path,
+                type: 'post',
+                data: { deleteCpt: deleteCpt },
+                success: function(response) {
+                    alert(response);
+                    setTimeout(function() {
+                        location.reload();
+                    }, 1000);
+                }
+            });
+        } 
+    });
+});
+</script>
