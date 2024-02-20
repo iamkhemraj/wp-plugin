@@ -12,7 +12,8 @@
                     $tag_data  = isset($cpt->tag ) ? $cpt->tag: '' ;             
                     $term_id   = isset($cpt->id ) ? $cpt->id: '' ;             
                     $category  = isset($cpt->category )? ucwords($cpt->category) : '' ; 
-                    $tax_slug  = str_replace(' ', '_', strtolower($category)); // Replace spaces with underscores
+                    $taxonomy  = str_replace(' ', '_', strtolower($category)); 
+                    $tax_slug  = !empty($taxonomy) ? $taxonomy :'category'; // Replace spaces with underscores
 
                     $rewrite_slug = array(
                         'slug' => $slug,
@@ -33,7 +34,7 @@
 
                     // Register custom taxonomy for categories 
 
-                    register_taxonomy( ($tax_slug) ? $tax_slug :'category'   , $slug, array(
+                    register_taxonomy( $tax_slug , $slug, array(
                         "hierarchical"      => true,
                         "labels"            => array(
                             "name"          => "Categories",
@@ -55,11 +56,11 @@
                     ));
 
                     if (isset($category) && !empty($category)) {  // Insert category       
-                        $term = wp_insert_term($category,   $tax_slug, array('term_id' => $term_id));   
+                        $term = wp_insert_term($category, $tax_slug);   
                     }
 
                     if (isset($tag_data) && !empty($tag_data)) { // Insert tags
-                        $term = wp_insert_term($tag_data, 'post_tag', array('term_id' => $term_id));     
+                        $term = wp_insert_term($tag_data, 'post_tag');     
                     }
                 }
             }
