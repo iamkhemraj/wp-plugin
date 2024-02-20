@@ -32,7 +32,8 @@
                     ));
 
                     // Register custom taxonomy for categories 
-                    register_taxonomy( $tax_slug , $slug, array(
+
+                    register_taxonomy( ($tax_slug) ? $tax_slug :'category'   , $slug, array(
                         "hierarchical"      => true,
                         "labels"            => array(
                             "name"          => "Categories",
