@@ -1,7 +1,7 @@
   @mixin content_url{
     content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg")!important;
   }
-  $border: 1px solid #000;
+  $border: 1px solid #534a4a;
   $boxShadow: 0 1px 1px rgba(0, 0, 0, .04);
   $padding: 20px 20px 20px 20px;
  
@@ -9,7 +9,7 @@
 // Add style in register form section
 .register__form{
  
-  background-color: #8bb19a  !important;
+  background-color: #fff  !important;
   padding: 18px;
   &__section {
     border: $border;
@@ -26,7 +26,7 @@
       width: 80%;
     }
     input[type=checkbox]:focus , input[type=text]:focus {
-      border-color: #000 !important;
+      border-color: #3e3d3d !important;
       box-shadow: 0 0 0 1px #000 !important;
       accent-color: #000;
     }
@@ -51,7 +51,6 @@
   }
 
   .get_post_type {
-    border: $border;
     box-shadow: $boxShadow;
     padding:20px 20px 20px 20px;
     width: 100%;

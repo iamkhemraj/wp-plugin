@@ -1,11 +1,11 @@
 .register__form {
-  background-color: #3b9386d9 !important;
+  background-color: #fff !important;
   padding: 18px;
 }
 .register__form__section {
-  border: 1px solid #b9545461;
+  border: 1px solid #534a4a;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-  padding: 20px 0px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 .register__form__section .post_title h1 {
   font-weight: 400;
@@ -15,7 +15,7 @@
   width: 80%;
 }
 .register__form__section input[type=checkbox]:focus, .register__form__section input[type=text]:focus {
-  border-color: #000 !important;
+  border-color: #3e3d3d !important;
   box-shadow: 0 0 0 1px #000 !important;
   accent-color: #000;
 }
@@ -30,14 +30,13 @@
   background-color: #000 !important;
 }
 .register__form__section form span#alert {
-  background: #84b584;
   color: rgba(2, 12, 4, 0.7098039216);
   padding: 4px;
 }
 .register__form .get_post_type {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
-  padding: 20px 0px 20px 20px;
-  width: 30%;
+  padding: 20px 20px 20px 20px;
+  width: 100%;
   margin-top: 53px;
 }
 .register__form .get_post_type input[type=checkbox]:checked::before {
