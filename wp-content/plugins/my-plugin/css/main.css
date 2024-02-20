@@ -4,7 +4,11 @@
 }
 .register__form__section {
   border: 1px solid #534a4a;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 20px 20px 20px 20px;
+}
+.register__form__section .register__form__section {
+  /* border: 1px solid #534a4a; */
+  box-shadow: 0px 0px 1px 0px #212529;
   padding: 20px 20px 20px 20px;
 }
 .register__form__section .post_title h1 {
@@ -16,8 +20,8 @@
 }
 .register__form__section input[type=checkbox]:focus, .register__form__section input[type=text]:focus {
   border-color: #3e3d3d !important;
-  box-shadow: 0 0 0 1px #000 !important;
-  accent-color: #000;
+  box-shadow: 0 0 0 1px #2271b1 !important;
+  accent-color: #2271b1;
 }
 .register__form__section input[type=checkbox]:checked::before {
   content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg") !important;
@@ -27,14 +31,13 @@
 }
 .register__form__section #create-custom-post {
   color: #fff !important;
-  background-color: #000 !important;
+  background-color: #2271b1 !important;
 }
 .register__form__section form span#alert {
   color: rgba(2, 12, 4, 0.7098039216);
   padding: 4px;
 }
 .register__form .get_post_type {
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
   padding: 20px 20px 20px 20px;
   width: 100%;
   margin-top: 53px;

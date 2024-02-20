@@ -88,7 +88,7 @@ if (!defined('ABSPATH')) {
                                                 <td>
                                                     <form class="deleteForm" method="POST" action="">
                                                         <input type="hidden" name="del" class="delete_cpt" value="<?= $cpt_ID ?>">
-                                                        <a href="#" class="deleteButton btn btn-danger"><?php esc_html_e('delete'); ?></a>
+                                                        <a href="#" class="deleteButton btn text-white " style="background-color:#2271b1;"><?php esc_html_e('delete'); ?></a>
                                                     </form>
                                                 </td>
                                             </tr> <?php
