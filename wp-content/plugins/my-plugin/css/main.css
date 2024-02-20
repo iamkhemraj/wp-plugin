@@ -1,17 +1,46 @@
-/* Error: Can't find stylesheet to import.
- *   ,
- * 1 |   @import "reset"; // import resent.scss file here
- *   |           ^^^^^^^
- *   '
- *   scss\app.scss 1:11  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502    @import \"reset\"; // import resent.scss file here\d\a   \2502            ^^^^^^^\a   \2575 \a   scss\\app.scss 1:11  root stylesheet";
+.register__form {
+  background-color: #fff !important;
+  padding: 18px;
 }
+.register__form__section {
+  border: 1px solid #534a4a;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 20px 20px 20px 20px;
+}
+.register__form__section .post_title h1 {
+  font-weight: 400;
+  font-size: 23px;
+}
+.register__form__section input[type=text] {
+  width: 80%;
+}
+.register__form__section input[type=checkbox]:focus, .register__form__section input[type=text]:focus {
+  border-color: #3e3d3d !important;
+  box-shadow: 0 0 0 1px #000 !important;
+  accent-color: #000;
+}
+.register__form__section input[type=checkbox]:checked::before {
+  content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg") !important;
+}
+.register__form__section .error {
+  color: red;
+}
+.register__form__section #create-custom-post {
+  color: #fff !important;
+  background-color: #000 !important;
+}
+.register__form__section form span#alert {
+  color: rgba(2, 12, 4, 0.7098039216);
+  padding: 4px;
+}
+.register__form .get_post_type {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 20px 20px 20px 20px;
+  width: 100%;
+  margin-top: 53px;
+}
+.register__form .get_post_type input[type=checkbox]:checked::before {
+  content: url("http://wp-plugin.test/wp-content/plugins/my-plugin/admin-dashboard/img/check.svg") !important;
+}
+
+/*# sourceMappingURL=main.css.map */
